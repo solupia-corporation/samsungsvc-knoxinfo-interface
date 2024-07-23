@@ -1,0 +1,22 @@
+server:
+  port: 8010
+logging:
+  file: logs/
+  level:
+    root: info
+datasource:
+  master:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://192.168.1.228:1433;database=SAMSUNGSVC_ESPIDER
+    user-name: sa
+    password: admin123!@#
+  partners:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://192.168.1.228:1433;database=SAMSUNGSVC_ESPIDER
+    user-name: sa
+    password: admin123!@#
+  master-duty:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://192.168.1.228:1433;database=SAMSUNGSVC_ESPIDER
+    user-name: sa
+    password: admin123!@#

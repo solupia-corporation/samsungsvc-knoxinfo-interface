@@ -1,0 +1,6 @@
+server:
+  port: 8010
+logging:
+  file: logs/
+  level:
+    root: debug

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="lab.solupia.samsungsvc.api.user.mapper.PartnersUserMapper">
+    <select id="getList" resultType="lab.solupia.samsungsvc.api.user.dto.PartnersUserDTO">
+        SELECT  COMP_CODE   AS DEPARTMENT_ID,
+                EMP_NO      AS EMPLOYEE_NUMBER,
+                USER_NAME   AS USER_NAME,
+                USE_YN      AS USE_YN
+        FROM    SECWFM.WF_USERMASTER
+        WHERE   COMP_CODE   IN ('TCKSF', 'UBSSF')
+    </select>
+    <select id="getEduUsers" resultType="lab.solupia.samsungsvc.api.user.dto.PartnersUserDTO">
+        SELECT  PERSONAL_AGENCY_CODE    AS DEPARTMENT_ID,
+                EMP_NO                  AS EMPLOYEE_NUMBER,
+                USER_NAME               AS USER_NAME,
+                USE_YN                  AS USE_YN
+        FROM    SECWFM.WF_USERMASTER
+        WHERE   PERSONAL_AGENCY_CODE    LIKE 'EDU%'
+    </select>
+    <select id="get99N05Users" resultType="lab.solupia.samsungsvc.api.user.dto.PartnersUserDTO">
+        SELECT  PERSONAL_AGENCY_CODE    AS DEPARTMENT_ID,
+                EMP_NO                  AS EMPLOYEE_NUMBER,
+                USER_NAME               AS USER_NAME,
+                USE_YN                  AS USE_YN
+        FROM    SECWFM.WF_USERMASTER
+        WHERE   PERSONAL_AGENCY_CODE    = '99N05'
+    </select>
+</mapper>

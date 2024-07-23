@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="lab.solupia.samsungsvc.api.duty.mapper.DutyInterfaceMapper">
+    <select id="findTargetUsers" resultType="lab.solupia.samsungsvc.api.duty.dto.EmployeeDutyDTO">
+        SELECT  empid               AS EMPLOYEE_ID,
+                A1.jobcd || A1.prodcd
+                                    AS DUTY_ID
+        FROM    PDSS40.hri_emp_mas  A1
+        WHERE   A1.jobcd || A1.prodcd IN
+                    <foreach collection="dutyIds" item="dutyId"  open="(" close=")" separator=", ">
+                        #{dutyId}
+                    </foreach>
+    </select>
+</mapper>

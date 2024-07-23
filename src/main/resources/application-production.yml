@@ -1,0 +1,21 @@
+server:
+  port: 8123
+logging:
+  file: logs/
+  level: error
+datasource:
+  master:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://20.8.121.131:1435;database=eSpider
+    user-name: eSpider
+    password: dlatlfh12#
+  partners:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@20.8.121.38:1355:WFM
+    user-name: svcespider
+    password: dlatlfh12#
+  master-duty:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@20.8.121.101:1527:PDSS
+    user-name: svcespider
+    password: dlatlfh12#

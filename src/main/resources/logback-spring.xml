@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="logging/console-logging.xml" />
+    <include resource="logging/file-logging.xml" />
+    <root level="info">
+        <springProfile name="local">
+            <appender-ref ref="STDOUT"/>
+        </springProfile>
+        <springProfile name="development">
+            <appender-ref ref="STDOUT" />
+            <appender-ref ref="dailyRollingFileAppender" />
+        </springProfile>
+        <springProfile name="production">
+            <appender-ref ref="dailyRollingFileAppender"/>
+        </springProfile>
+    </root>
+</configuration>

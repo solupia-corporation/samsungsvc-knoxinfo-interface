@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="lab.solupia.samsungsvc.api.duty.mapper.MasterDutyMapper">
+    <update id="updateUserDuty" parameterType="lab.solupia.samsungsvc.api.duty.dto.EmployeeDutyDTO">
+        UPDATE USERS_TEMP
+        SET    DUTY_ID = #{dutyId}
+        WHERE  EMP_NUM = #{employeeId}
+    </update>
+    <update id="updateGeneralDuty">
+        UPDATE USERS_TEMP
+        SET    DUTY_ID = 'GEN'
+        WHERE  DUTY_ID IS NULL
+    </update>
+    <select id="selectDutyIds" resultType="string">
+        SELECT  DUTY_ID
+        FROM    DUTY
+    </select>
+</mapper>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!-- @author jason, Moon (jason@solupia.co.kr) -->
+<!-- @since 2018-12-19 -->
+<mapper namespace="lab.solupia.samsungsvc.api.dept.mapper.DepartmentMapper">
+
+    <insert id="insertKnoxDepartment">
+        INSERT INTO INSA_KNOX_DEPT_INTERLOCK (EPORGANIZATIONNUMBER, O, DEPARTMENTNUMBER, EPDEPTLEVEL, OU, EPDEPTORDER,
+                                              EPENORGANIZATIONNAME, EPENDEPARTMENT, EPINDEPTCODE, EPMANAGERID, EPMANAGERNAME,
+                                              EPMANAGERTITLE, EPSUBORGCODE, EPSUBORGNAME, EPHIGHDEPTNUMBER, EPHIGHDEPTNAME)
+        VALUES (#{eporganizationnumber},
+                #{o},
+                #{departmentnumber},
+                #{epdeptlevel},
+                #{ou},
+                #{epdeptorder},
+                #{epenorganizationname},
+                #{ependepartment},
+                #{epindeptcode},
+                #{epmanagerid},
+                #{epmanagername},
+                #{epmanagertitle},
+                #{epsuborgcode},
+                #{epsuborgname},
+                #{ephighdeptnumber},
+                #{ephighdeptname}
+               )
+    </insert>
+
+<!--    <insert id="insertCompanyDepartmentMapping">-->
+<!--        INSERT INTO COMP_DEPT_MAP_TEMP (COMP_ID, DEPT_ID)-->
+<!--        VALUES (#{companyId}, #{departmentnumber})-->
+<!--    </insert>-->
+
+    <delete id="deleteKnoxDepartment">
+        DELETE FROM INSA_KNOX_DEPT_INTERLOCK
+    </delete>
+
+<!--    <delete id="deleteCompanyDepartmentMapping">-->
+<!--        DELETE FROM COMP_DEPT_MAP_TEMP-->
+<!--    </delete>-->
+
+<!--    <delete id="deleteCompany">-->
+<!--        DELETE FROM COMP_TEMP-->
+<!--    </delete>-->
+
+    <select id="selectDepartment" resultType="lab.solupia.samsungsvc.api.dept.dto.DepartmentDTO">
+        SELECT  departmentnumber AS DEPARTMENT_ID
+        FROM    INSA_KNOX_DEPT_INTERLOCK
+        WHERE   eporganizationnumber = #{companyId}
+    </select>
+</mapper>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!-- @author jason, Moon (jason@solupia.co.kr) -->
+<!-- @since 2018-12-20 -->
+<mapper namespace="lab.solupia.samsungsvc.api.user.mapper.UserMapper">
+
+    <select id="countUser" resultType="java.lang.Integer">
+        SELECT COUNT(1) FROM INSA_KNOX_USER_INTERLOCK WHERE userid = #{userId}
+    </select>
+
+<!--    <select id="countUserByEmployeeNumber" resultType="java.lang.Integer">-->
+<!--        SELECT COUNT(1) FROM USERS_TEMP WHERE EMP_NUM = #{employeeNumber}-->
+<!--    </select>-->
+
+    <insert id="insertKnoxUser">
+        INSERT INTO INSA_KNOX_USER_INTERLOCK (EPBUSICODE, EPBUSINAME, EPORGANIZATIONNUMBER, O, EPDEFAULTCOMPCODE,
+                                              DEPARTMENTNUMBER, DEPARTMENT, DESCRIPTION, MAIL, EMPLOYEENUMBER, EPUSERSTATUS,
+                                              EMPLOYEETYPE, EPID, EPISBLUE, EPEXTERNALMAIL, CN, EPGRADENAME, EPGRADEORTITLE,
+                                              EPINDEPTCODE, EPINDEPTCODENAME, EPJOBNAME, EPJOB, EPNATIVE, MOBILE,
+                                              EPSECURITYLEVEL, EPSENDBUSICODE, EPSENDCOMPANYCODE, EPSENDCOMPANYNAME,
+                                              EPSENDDEPTCODE, EPSENDDEPTNAME, EPSENDGRADENAME, EPSENDGRADEORTITLE,
+                                              EPSENDREGIONCODE, EPSENDSECURITYLEVEL, EPSENDSUBORGCODE, EPSENDSUBORGNAME,
+                                              EPSENDTITLENAME, EPSENDTITLENUMBER, EPSUBORGCODE, EPSUBORGNAME, TITLE,
+                                              EPTITLENUMBER, USERID)
+        VALUES (#{epbusicode},
+                #{epbusiname},
+                #{eporganizationnumber},
+                #{o},
+                #{epdefaultcompcode},
+                #{departmentnumber},
+                #{department},
+                #{description},
+                #{mail},
+                #{employeenumber},
+                #{epuserstatus},
+                #{employeetype},
+                #{epid},
+                #{episblue},
+                #{epexternalmail},
+                #{cn},
+                #{epgradename},
+                #{epgradeortitle},
+                #{epindeptcode},
+                #{epindeptcodename},
+                #{epjobname},
+                #{epjob},
+                #{epnative},
+                #{mobile},
+                #{epsecuritylevel},
+                #{epsendbusicode},
+                #{epsendcompanycode},
+                #{epsendcompanyname},
+                #{epsenddeptcode},
+                #{epsenddeptname},
+                #{epsendgradename},
+                #{epsendgradeortitle},
+                #{epsendregioncode},
+                #{epsendsecuritylevel},
+                #{epsendsuborgcode},
+                #{epsendsuborgname},
+                #{epsendtitlename},
+                #{epsendtitlenumber},
+                #{epsuborgcode},
+                #{epsuborgname},
+                #{title},
+                #{eptitlenumber},
+                #{userid}
+               )
+    </insert>
+
+    <update id="updateKnoxUser">
+        UPDATE INSA_KNOX_USER_INTERLOCK
+        SET EPBUSICODE = #{epbusicode},
+            EPBUSINAME = #{epbusiname},
+            EPORGANIZATIONNUMBER = #{eporganizationnumber},
+            O = #{o},
+            EPDEFAULTCOMPCODE = #{epdefaultcompcode},
+            DEPARTMENTNUMBER = #{departmentnumber},
+            DEPARTMENT = #{department},
+            DESCRIPTION = #{description},
+            MAIL = #{mail},
+            EMPLOYEENUMBER = #{employeenumber},
+            EPUSERSTATUS = #{epuserstatus},
+            EMPLOYEETYPE = #{employeetype},
+            EPID = #{epid},
+            EPISBLUE = #{episblue},
+            EPEXTERNALMAIL = #{epexternalmail},
+            CN = #{cn},
+            EPGRADENAME = #{epgradename},
+            EPGRADEORTITLE = #{epgradeortitle},
+            EPINDEPTCODE = #{epindeptcode},
+            EPINDEPTCODENAME = #{epindeptcodename},
+            EPJOBNAME = #{epjobname},
+            EPJOB = #{epjob},
+            EPNATIVE = #{epnative},
+            MOBILE = #{mobile},
+            EPSECURITYLEVEL = #{epsecuritylevel},
+            EPSENDBUSICODE = #{epsendbusicode},
+            EPSENDCOMPANYCODE = #{epsendcompanycode},
+            EPSENDCOMPANYNAME = #{epsendcompanyname},
+            EPSENDDEPTCODE = #{epsenddeptcode},
+            EPSENDDEPTNAME = #{epsenddeptname},
+            EPSENDGRADENAME = #{epsendgradename},
+            EPSENDGRADEORTITLE = #{epsendgradeortitle},
+            EPSENDREGIONCODE = #{epsendregioncode},
+            EPSENDSECURITYLEVEL = #{epsendsecuritylevel},
+            EPSENDSUBORGCODE = #{epsendsuborgcode},
+            EPSENDSUBORGNAME = #{epsendsuborgname},
+            EPSENDTITLENAME = #{epsendtitlename},
+            EPSENDTITLENUMBER = #{epsendtitlenumber},
+            EPSUBORGCODE = #{epsuborgcode},
+            EPSUBORGNAME = #{epsuborgname},
+            TITLE = #{title},
+            EPTITLENUMBER = #{eptitlenumber}
+        WHERE USERID = #{userid};
+    </update>
+
+<!--    <insert id="insertPartnersUser">-->
+<!--        INSERT INTO USERS_TEMP (LOGIN_ID, EMP_NUM, USER_NAME, EMAIL, KNOX_USER_ID, PSTN_ID, DUTY_ID, SERVE_STATUS)-->
+<!--        VALUES (#{employeeNumber}, #{employeeNumber}, #{userName}, NULL, #{employeeNumber}, 'C1', 'GEN', #{serveStatus})-->
+<!--    </insert>-->
+
+    <select id="selectLoginIdByEmployeeNumber" resultType="java.lang.String">
+        SELECT  TOP 1
+                A1.LOGIN_ID
+        FROM    USERS       A1
+        WHERE   A1.EMP_NUM  = #{employeeNumber}
+        AND     A1.LOGIN_ID != #{employeeNumber}
+        ORDER BY A1.SEQ DESC
+    </select>
+
+<!--    <insert id="updatePartnersUserDepartmentMapping" parameterType="lab.solupia.samsungsvc.api.user.dto.PartnersUserDTO">-->
+<!--        UPDATE  USER_DEPT_MAP_TEMP-->
+<!--        SET     DEPT_ID         = #{departmentId}-->
+<!--        WHERE   USER_LOGIN_ID   = #{loginId}-->
+<!--    </insert>-->
+
+<!--    <insert id="updatePartnersUserServeStatus" parameterType="lab.solupia.samsungsvc.api.user.dto.PartnersUserDTO">-->
+<!--        UPDATE  USERS_TEMP-->
+<!--        SET     SERVE_STATUS = #{serveStatus}-->
+<!--        WHERE   LOGIN_ID = #{loginId}-->
+<!--    </insert>-->
+
+<!--    <insert id="insertPartnersUserDepartmentMapping" parameterType="lab.solupia.samsungsvc.api.user.dto.PartnersUserDTO">-->
+<!--        INSERT INTO USER_DEPT_MAP_TEMP(USER_LOGIN_ID, DEPT_ID)-->
+<!--        VALUES (#{employeeNumber}, #{departmentId})-->
+<!--    </insert>-->
+
+<!--    <update id="mergePosition" parameterType="java.util.HashMap">-->
+<!--        MERGE PSTN A1-->
+<!--        USING (SELECT #{eptitlenumber} AS PSTN_ID) B1-->
+<!--        ON (A1.PSTN_ID = B1.PSTN_ID AND A1.PSTN_ID = #{eptitlenumber})-->
+<!--        WHEN MATCHED THEN-->
+<!--            UPDATE SET PSTN_NAME = #{title}-->
+<!--        WHEN NOT MATCHED THEN-->
+<!--            INSERT (PSTN_ID, PSTN_NAME) VALUES (#{eptitlenumber}, #{title});-->
+<!--    </update>-->
+
+<!--    <insert id="insertUserDepartmentMapping">-->
+<!--        INSERT INTO USER_DEPT_MAP_TEMP (USER_LOGIN_ID, DEPT_ID)-->
+<!--        SELECT #{userid}, #{departmentId}-->
+<!--        WHERE NOT EXISTS (SELECT * FROM USER_DEPT_MAP_TEMP-->
+<!--                    WHERE USER_LOGIN_ID = #{userid}-->
+<!--                    AND DEPT_ID = #{departmentId})-->
+<!--    </insert>-->
+
+    <delete id="deleteKnoxUser">
+        DELETE FROM INSA_KNOX_USER_INTERLOCK
+    </delete>
+
+<!--    <delete id="deleteUserDepartmentMapping">-->
+<!--        DELETE FROM USER_DEPT_MAP_TEMP-->
+<!--    </delete>-->
+</mapper>
